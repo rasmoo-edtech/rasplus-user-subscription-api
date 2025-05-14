@@ -1,9 +1,9 @@
 package com.rasmoo.client.usersubscription.controller;
 
-import com.rasmoo.client.usersubscription.dto.request.UserRequestDto;
+import com.rasmoo.client.usersubscription.dto.UserDto;
 import com.rasmoo.client.usersubscription.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,12 +27,12 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserRequestDto> create(@Valid @RequestBody UserDto dto) {
+    public ResponseEntity<UserDto> create(@Valid @RequestBody UserDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.create(dto));
     }
 
     @PatchMapping(value = "/{id}/upload-photo", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserRequestDto> uploadPhoto(@PathVariable("id") Long id, @RequestPart("file") MultipartFile file) throws IOException {
+    public ResponseEntity<UserDto> uploadPhoto(@PathVariable("id") Long id, @RequestPart("file") MultipartFile file) throws IOException {
         return ResponseEntity.status(HttpStatus.OK).body(userService.uploadPhoto(id, file));
     }
 

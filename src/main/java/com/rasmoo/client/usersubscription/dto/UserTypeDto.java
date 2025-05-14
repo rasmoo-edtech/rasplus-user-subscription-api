@@ -1,10 +1,10 @@
-package com.rasmoo.client.usersubscription.dto.request;
+package com.rasmoo.client.usersubscription.dto;
 
 import lombok.Builder;
 
 
 @Builder
-public record UserTypeRequestDto(
+public record UserTypeDto(
 
         Long id,
 

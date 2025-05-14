@@ -1,8 +1,6 @@
 package com.rasmoo.client.usersubscription.service.impl;
 
-import com.client.api.rasmooplus.model.jpa.UserType;
-import com.client.api.rasmooplus.repositoy.jpa.UserTypeRepository;
-import com.client.api.rasmooplus.service.UserTypeService;
+import com.rasmoo.client.usersubscription.dto.UserTypeDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +15,7 @@ public class UserTypeServiceImpl implements UserTypeService {
     }
 
     @Override
-    public List<UserType> findAll() {
+    public List<UserTypeDto> findAll() {
         return userTypeRepository.findAll();
     }
 }

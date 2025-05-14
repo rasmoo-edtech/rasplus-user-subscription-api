@@ -1,19 +1,19 @@
 package com.rasmoo.client.usersubscription.service;
 
-import com.client.api.rasmooplus.dto.SubscriptionTypeDto;
-import com.client.api.rasmooplus.model.jpa.SubscriptionType;
+
+import com.rasmoo.client.usersubscription.dto.SubscriptionTypeDto;
 
 import java.util.List;
 
 public interface SubscriptionTypeService {
 
-    List<SubscriptionType> findAll();
+    List<SubscriptionTypeDto> findAll();
 
-    SubscriptionType findById(Long id);
+    SubscriptionTypeDto findById(Long id);
 
-    SubscriptionType create(SubscriptionTypeDto dto);
+    SubscriptionTypeDto create(SubscriptionTypeDto dto);
 
-    SubscriptionType update(Long id, SubscriptionTypeDto dto);
+    SubscriptionTypeDto update(Long id, SubscriptionTypeDto dto);
 
     void delete(Long id);
 }

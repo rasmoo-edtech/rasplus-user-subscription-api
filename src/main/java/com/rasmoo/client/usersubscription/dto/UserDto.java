@@ -1,11 +1,11 @@
-package com.rasmoo.client.usersubscription.dto.request;
+package com.rasmoo.client.usersubscription.dto;
 
 import lombok.Builder;
 
 import java.time.LocalDate;
 
 @Builder
-public record UserRequestDto(
+public record UserDto(
 
 
         Long id,
@@ -26,8 +26,8 @@ public record UserRequestDto(
 
         byte[] photo,
 
-        UserTypeRequestDto userTypeRequestDto,
+        UserTypeDto userTypeRequestDto,
 
-        SubscriptionTypeRequestDto subscriptionTypeRequestDto
+        SubscriptionTypeDto subscriptionTypeRequestDto
 ) {
 }

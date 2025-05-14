@@ -1,6 +1,8 @@
 package com.rasmoo.client.usersubscription.service.impl;
 
 
+import com.rasmoo.client.usersubscription.dto.SubscriptionTypeDto;
+import com.rasmoo.client.usersubscription.service.SubscriptionTypeService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -22,13 +24,13 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
 
     @Override
     @Cacheable(value = "subscriptionType")
-    public List<SubscriptionType> findAll() {
+    public List<SubscriptionTypeDto> findAll() {
         return subscriptionTypeRepository.findAll();
     }
 
     @Override
     @Cacheable(value = "subscriptionType", key = "#id")
-    public SubscriptionType findById(Long id) {
+    public SubscriptionTypeDto findById(Long id) {
         return getSubscriptionType(id).add(WebMvcLinkBuilder.linkTo(
                 WebMvcLinkBuilder.methodOn(SubscriptionTypeController.class).findById(id))
                 .withSelfRel()
@@ -43,7 +45,7 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
 
     @Override
     @CacheEvict(value = "subscriptionType", allEntries = true)
-    public SubscriptionType create(SubscriptionTypeDto dto) {
+    public SubscriptionTypeDto create(SubscriptionTypeDto dto) {
         if (Objects.nonNull(dto.getId())) {
             throw new BadRequestException("Id deve ser nulo");
         }
@@ -52,7 +54,7 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
 
     @Override
     @CacheEvict(value = "subscriptionType", allEntries = true)
-    public SubscriptionType update(Long id, SubscriptionTypeDto dto) {
+    public SubscriptionTypeDto update(Long id, SubscriptionTypeDto dto) {
         getSubscriptionType(id);
         dto.setId(id);
         return subscriptionTypeRepository.save(SubscriptionTypeMapper.fromDtoToEntity(dto));
@@ -65,8 +67,8 @@ public class SubscriptionTypeServiceImpl implements SubscriptionTypeService {
         subscriptionTypeRepository.deleteById(id);
     }
 
-    private SubscriptionType getSubscriptionType(Long id) {
-        Optional<SubscriptionType> optionalSubscriptionType = subscriptionTypeRepository.findById(id);
+    private SubscriptionTypeDto getSubscriptionType(Long id) {
+        Optional<SubscriptionTypeDto> optionalSubscriptionType = subscriptionTypeRepository.findById(id);
         if (optionalSubscriptionType.isEmpty()) {
             throw new NotFoudException("SubscriptionType não encontrado");
         }

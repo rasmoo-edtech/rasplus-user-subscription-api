@@ -1,11 +1,11 @@
-package com.rasmoo.client.usersubscription.dto.request;
+package com.rasmoo.client.usersubscription.dto;
 
 import lombok.Builder;
 
 import java.math.BigDecimal;
 
 @Builder
-public record SubscriptionTypeRequestDto(
+public record SubscriptionTypeDto(
         Long id,
 
         String name,

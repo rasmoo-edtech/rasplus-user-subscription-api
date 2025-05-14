@@ -1,6 +1,6 @@
 package com.rasmoo.client.usersubscription.controller;
 
-import com.rasmoo.client.usersubscription.dto.request.UserTypeRequestDto;
+import com.rasmoo.client.usersubscription.dto.UserTypeDto;
 import com.rasmoo.client.usersubscription.service.UserTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ public class UserTypeController {
     private final UserTypeService userTypeService;
 
     @GetMapping
-    public ResponseEntity<List<UserTypeRequestDto>> findAll() {
+    public ResponseEntity<List<UserTypeDto>> findAll() {
         return ResponseEntity.status(HttpStatus.OK).body(userTypeService.findAll());
     }
 }
